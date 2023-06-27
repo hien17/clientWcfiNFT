@@ -3,7 +3,7 @@ import { colors } from "../constants/colors";
 import HomeImage from "/Image/HomeImage.png";
 import { Context } from "../context/Context.jsx";
 import { shortenAddress } from "../utils/shortenAddress";
-import { AiOutlineQuestionCircle } from "react-icons/Ai";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 import Tier from "./Tier";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/system/Box";
