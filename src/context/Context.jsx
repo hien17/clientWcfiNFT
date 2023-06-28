@@ -182,11 +182,28 @@ export const ContextProvider = ({ children }) => {
   //   }
   // }
 
+
+  
+  //listen event change account => set current account(can reload if needed)
+  useEffect(() => {
+    const handleAccountsChanged = (accounts) => {
+      setCurrentAccount(accounts[0]);
+      // window.location.reload();
+    };
+    ethereum?.on("accountsChanged", handleAccountsChanged);
+    return () => {
+      ethereum?.removeListener("accountsChanged", handleAccountsChanged);
+    };
+  }, [setCurrentAccount]);
+
+  
+
   return (
     <Context.Provider
       value={{
         connectWallet,
         currentAccount,
+        setCurrentAccount,
         handleMint,
         showModal,
         handleShowModal,

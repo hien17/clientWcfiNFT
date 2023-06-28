@@ -77,7 +77,6 @@ const HomeBody = () => {
     showModal,
     setShowModal,
     mintedNftDetails,
-    nftId,
   } = useContext(Context);
   return (
     <div className="bg-black w-full mx-auto flex justify-center">

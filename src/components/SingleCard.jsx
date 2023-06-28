@@ -164,11 +164,6 @@ const SingleCard = ({ listing }) => {
 
     enableWeb3Async();
   }, []);
-  const closeAllFunc = () => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 4000);
-  };
 
   //listNFT
   const {
@@ -188,10 +183,10 @@ const SingleCard = ({ listing }) => {
   const handleSell = async () => {
     try {
       await listNFT({
-        onSuccess: () => {
+        onSuccess: (tx) => tx.wait().then(() =>  {
           console.log("LIST NFT SUCCESSFULL !");
-          closeAllFunc();
-        },
+          window.location.reload();
+        }),
         onError: (error) => console.log(error),
       });
     } catch (error) {
@@ -214,10 +209,10 @@ const SingleCard = ({ listing }) => {
   const handleUnlist = async () => {
     try {
       await unlistNFT({
-        onSuccess: () => {
+        onSuccess: (tx) => tx.wait().then(() =>  {
           console.log("UNLIST NFT SUCCESSFULL !");
-          closeAllFunc();
-        },
+          window.location.reload();
+        }),
         onError: (error) => console.log(error),
       });
     } catch (error) {
@@ -241,10 +236,10 @@ const SingleCard = ({ listing }) => {
   const handleBuy = async () => {
     try {
       await buyNFT({
-        onSuccess: () => {
+        onSuccess: (tx) => tx.wait().then(() =>  {
           console.log("BUY NFT SUCCESSFULL !");
-          closeAllFunc();
-        },
+          window.location.reload();
+        }),
         onError: (error) => console.log(error),
       });
     } catch (error) {
@@ -270,10 +265,10 @@ const SingleCard = ({ listing }) => {
   const handleUpdate = async () => {
     try {
       await updateListing({
-        onSuccess: () => {
+        onSuccess: (tx) => tx.wait().then(() =>  {
           console.log("UPDATE PRICE SUCCESSFULL !");
-          closeAllFunc();
-        },
+          window.location.reload();
+        }),
         onError: (error) => console.log(error),
       });
     } catch (error) {
@@ -294,10 +289,10 @@ const SingleCard = ({ listing }) => {
   const handleApprove = async () => {
     try {
       await setApprovalForAll({
-        onSuccess: () => {
+        onSuccess: (tx) => tx.wait().then(() =>  {
           console.log("APPROVE SUCCESSFULL !");
-          closeAllFunc();
-        },
+          window.location.reload();
+        }),
         onError: (error) => console.log(error),
       });
     } catch (error) {

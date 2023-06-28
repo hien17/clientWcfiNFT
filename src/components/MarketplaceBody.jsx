@@ -8,6 +8,8 @@ import { marketplaceABI, marketplaceAddress } from "../utils/constantsMarket";
 
 const MarketplaceBody = () => {
  const [listings, setListings] = useState(false);
+ //const {listings, setListings} = useContext(Context);
+ const [shouldReload, setShouldReload] = useState(false);
   const GET_ITEM = gql`
         {
           tokens(
@@ -28,21 +30,29 @@ const MarketplaceBody = () => {
     `
    
     const { loading, error, data, refetch } = useQuery(GET_ITEM)
-
+ 
 useEffect(() => {
   if(!loading) {
     setListings(data.tokens.map(token =>{
-      console.log(token);
+      setShouldReload(true);
       return token;
     }))
   }
-},[loading,refetch])
+},[loading])
+ useEffect(() => {
+  if (shouldReload==true){
+    window.location.reload();
+    setShouldReload(false);
+  }
+ },[]);
 
 const getListings = (index) => {
   if (listings != []) {
     return listings[index];
   }
 };
+
+ 
   return (
     <div className="w-screen h-[3364px] bg-black flex flex-col gap-[40px]">
       <Box
